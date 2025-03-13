@@ -26,10 +26,15 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    
+    - name: 'Set up latest Oracle JDK 23'
+      uses: oracle-actions/setup-java@v1
+      with:
+        website: oracle.com
+        release: 23
 
     - name: Debug output
       run: mvn --version
-
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
