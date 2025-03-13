@@ -32,9 +32,6 @@ jobs:
       with:
         languages: ${{ matrix.language }}
 
-    # - name: Autobuild
-    #   uses: github/codeql-action/autobuild@v3
-
     - name: Manualbuild
       run: "mvn -DskipTests=true -DskipAssembly clean install"
 
