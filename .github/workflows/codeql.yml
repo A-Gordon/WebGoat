@@ -39,7 +39,7 @@ jobs:
     - name: Resolve Environment
       uses: github/codeql-action/resolve-environment@v3
       with:
-        languages: ${{ matrix.language }}
+        language: java
 
     - name: Manual build
       run: "mvn -DskipTests=true -DskipAssembly clean install"
