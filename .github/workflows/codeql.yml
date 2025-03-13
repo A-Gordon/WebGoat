@@ -35,7 +35,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        build-mode: autobuild
+        build-mode: manual
       
     # - name: Resolve Environment
     #   uses: github/codeql-action/resolve-environment@v3
@@ -46,8 +46,9 @@ jobs:
     #   uses: github/codeql-action/autobuild@v3
 
 
-    # - name: Manual build
-    #   run: "mvn -DskipTests=true -DskipAssembly clean install"
+    - name: Manual build
+      run: "./mvnw -DskipTests=true -DskipAssembly clean install"
+      working-directory: WebGoat
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
