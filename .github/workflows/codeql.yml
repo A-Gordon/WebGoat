@@ -35,14 +35,19 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
+        build-mode: autobuild
       
-    - name: Resolve Environment
-      uses: github/codeql-action/resolve-environment@v3
-      with:
-        language: java
+    # - name: Resolve Environment
+    #   uses: github/codeql-action/resolve-environment@v3
+    #   with:
+    #     language: java
+    
+    # - name: Autobuild
+    #   uses: github/codeql-action/autobuild@v3
 
-    - name: Manual build
-      run: "mvn -DskipTests=true -DskipAssembly clean install"
+
+    # - name: Manual build
+    #   run: "mvn -DskipTests=true -DskipAssembly clean install"
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
