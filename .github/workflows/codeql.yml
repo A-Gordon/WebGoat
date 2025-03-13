@@ -48,7 +48,6 @@ jobs:
 
     - name: Manual build
       run: "./mvnw -DskipTests=true -DskipAssembly clean install"
-      working-directory: WebGoat
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
