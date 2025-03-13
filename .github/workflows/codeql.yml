@@ -30,8 +30,14 @@ jobs:
     - name: Debug output
       run: mvn --version
 
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+      
+    - name: Resolve Environment
+      uses: github/codeql-action/resolve-environment@v3
       with:
         languages: ${{ matrix.language }}
 
