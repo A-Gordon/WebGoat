@@ -27,12 +27,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Debug output
+      run: mvn --version
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
 
-    - name: Manualbuild
+    - name: Manual build
       run: "mvn -DskipTests=true -DskipAssembly clean install"
 
     - name: Perform CodeQL Analysis
