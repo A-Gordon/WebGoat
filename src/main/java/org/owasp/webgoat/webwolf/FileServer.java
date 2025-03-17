@@ -71,8 +71,12 @@ public class FileServer {
     destinationDir.mkdirs();
     // DO NOT use multipartFile.transferTo(), see
     // https://stackoverflow.com/questions/60336929/java-nio-file-nosuchfileexception-when-file-transferto-is-called
+    String originalFilename = multipartFile.getOriginalFilename();
+    if (originalFilename.contains("..") || originalFilename.contains("/") || originalFilename.contains("\\")) {
+      throw new IllegalArgumentException("Invalid filename");
+    }
     try (InputStream is = multipartFile.getInputStream()) {
-      var destinationFile = destinationDir.toPath().resolve(multipartFile.getOriginalFilename());
+      var destinationFile = destinationDir.toPath().resolve(originalFilename);
       Files.deleteIfExists(destinationFile);
       Files.copy(is, destinationFile);
     }
